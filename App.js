@@ -1,19 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Button, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-export default function App() {
+import HomeScreen from './src/Pages/HomeScreen';
+import SettingsScreen from './src/Pages/SettingScreen';
+import SideMenu from './src/Pages/SideMenu';
+import ProflieScreen from './src/Pages/ProfileScreen';
+import SupportScreen from './src/Pages/SupportScreen';
+
+
+const Drawer = createDrawerNavigator();
+
+ function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator drawerContent={ props => <SideMenu {...props} /> }>
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
+        <Drawer.Screen name="Profile" component={ProflieScreen} />
+        <Drawer.Screen name="Support" component={SupportScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+export default App;
+
